@@ -1,0 +1,42 @@
+header img {
+  height: 40px;
+  margin: 17px 10px 0px 15px;
+  float: left;
+}
+
+#link {
+  margin: 40px 0px 30px 20px;
+  font-size: 24px;
+  text-decoration: underline;
+}
+
+a {
+  color: black;
+}
+
+a:visited {
+  color: #333;
+}
+
+.book:hover {
+  box-shadow: 5px 5px #111;
+}
+
+.book img {
+  height: 200px;
+  float: left;
+}
+
+.book div {
+  box-sizing: border-box;
+  float: left;
+  padding: 20px 20px 0px 20px;
+  line-height: 25px;
+}
+
+.fa {
+  height: 32px;
+  padding: 5px;
+  float: right;
+  font-size: 32px;
+}

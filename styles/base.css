@@ -1,0 +1,9 @@
+body {
+  width: 100%;
+  background-color: #bbbbbb;
+  font-family: sans-serif;
+}
+
+body * {
+  box-sizing: border-box;
+}

@@ -16,6 +16,9 @@ Client app for the Code 301 book list application
 ## Change Log
 03-26-2018 16:30 - Application has live index.html
 03-26-2018 21:09 - Application has complete file tree
+03-27-2018 11:11 - Application has Handlebars template and populated index.html
+03-27-2018 12:30 - Application populates HTML from database
+03-27-2018 13:45 - Application is styled with CSS
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->
