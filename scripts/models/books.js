@@ -1,6 +1,7 @@
 'use strict';
 
 var app = app || {};
+const API_URL = 'http://localhost:3000';
 
 (function(module) {
 
@@ -20,28 +21,19 @@ var app = app || {};
   }
 
   Book.loadAll = rows => {
-    Book.all = rows.sort().map(instance => new Book(instance));
+    Book.all = rows.sort((a, b) => {return a.title > b.title;})
+      .map(instance => new Book(instance));
   }
 
   Book.fetchAll = callback => {
-    // $.get('/api/v1/books')
-    //   .then(
-    //     function(data) {
-    //       Book.loadAll(data);
-    //       if(callback) callback();
-    //     },
-    //     function(err) {
-    //       console.log(err);
-    //     }
-    //   )
-    $.get('/data/books.json')
+    $.get(`${API_URL}/api/v1/books`)
       .then(
         function(data) {
           Book.loadAll(data);
           if(callback) callback();
         },
         function(err) {
-          app.errorView.errorCallback(err);
+          console.log(err);
         }
       )
   }
