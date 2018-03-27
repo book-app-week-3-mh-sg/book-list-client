@@ -1,7 +1,13 @@
 'use strict';
 
 var app = app || {};
-const API_URL = 'http://localhost:3000';
+
+const ENV = {};
+
+ENV.isProduction = window.location.protocol === 'https:';
+ENV.productionApiUrl = 'https://git.heroku.com/mh-sg-booklist.git';
+ENV.developmentApiUrl = 'http://localhost:3000';
+ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
 (function(module) {
 
@@ -26,7 +32,7 @@ const API_URL = 'http://localhost:3000';
   }
 
   Book.fetchAll = callback => {
-    $.get(`${API_URL}/api/v1/books`)
+    $.get(`${ENV.apiUrl}/api/v1/books`)
       .then(
         function(data) {
           Book.loadAll(data);
