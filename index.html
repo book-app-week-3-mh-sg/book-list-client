@@ -5,8 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Matt and Sarah's Book List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script id="article-template" type="text/x-handlebars-template">
+        <h2>{{title}}</h2>
+        <h3>{{author}}</h3>
+    </script>
 </head>
 <body>
-    <h1>Books App</h1>    
+    <h1>Books App</h1>
+    <dl>
+        <dt>Total Number of Books:</dt>
+        <dd id="count">5</dd>
+    </dl>
+    <section id="books"></section>
+    <section id="about">
+        <p>About Us!</p>
+        <p>About the Application!</p>
+    </section>    
 </body>
 </html>
