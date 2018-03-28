@@ -22,6 +22,15 @@ var app = app || {};
     $('#new-form').on('submit', app.Book.create);
   }
 
+  bookView.initDetailView = id => {
+    $('.container').hide();
+    $('#view-title').hide();
+    let selectedBook = app.Book.all.filter(book => book.book_id === id);
+    console.log(selectedBook);
+    $('#detail').append(selectedBook[0].showDetails());
+    $('#detail').show();
+  }
+
   bookView.toggleNav = () => {
     $('nav').toggle();
   }

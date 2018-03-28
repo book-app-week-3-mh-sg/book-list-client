@@ -31,8 +31,16 @@
               <h2>{{title}}</h2>
               <h3>by {{author}}</h3>
             </div>
-            <button>view details</button>
+            <a href="/books/{{book_id}}"><button>view details</button></a>
       </section>
+    </script>
+
+    <script id="book-detail-template" type="text/x-handlebars-template">
+        <img src={{image_url}}>
+            <h2>{{title}}</h2>
+            <h3>by {{author}}</h3>
+            <p>{{isbn}}</p>
+            <p>{{{description}}}</p>
     </script>
 
 </head>
@@ -52,6 +60,7 @@
     <section id="book-list" class="list-view container"></section>
 
     <section id="detail" class="container"></section>
+
     <form action="#" id="new-form" class="container">
         <label>
           <input type="text" id="book-title" placeholder="title" required>
