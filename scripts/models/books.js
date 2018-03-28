@@ -2,13 +2,6 @@
 
 var app = app || {};
 
-// const ENV = {};
-
-// ENV.isProduction = window.location.protocol === 'https:';
-// ENV.productionApiUrl = 'https://mh-sg-booklist.herokuapp.com';
-// ENV.developmentApiUrl = 'http://localhost:3000';
-// ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
-
 (function(module) {
 
   function Book (rawDataObj) {
@@ -33,7 +26,6 @@ var app = app || {};
 
   Book.fetchAll = callback => {
     $.get('https://mh-sg-booklist.herokuapp.com/api/v1/books')
-    // $.get(`${ENV.apiUrl}/api/v1/books`)
       .then(data => {
         Book.loadAll(data);
         callback();
