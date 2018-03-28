@@ -2,6 +2,7 @@ body {
   width: 100%;
   background-color: #bbbbbb;
   font-family: sans-serif;
+  position: relative;
 }
 
 body * {

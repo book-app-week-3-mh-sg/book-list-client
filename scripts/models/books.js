@@ -19,6 +19,11 @@ var app = app || {};
     return template(this);
   }
 
+  Book.prototype.insertBook = function(callback) {
+    $.post('/api/v1/books', {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
+      .then(callback);
+  }
+
   Book.loadAll = rows => {
     Book.all = rows.sort((a, b) => {return a.title > b.title;})
       .map(instance => new Book(instance));
@@ -34,6 +39,28 @@ var app = app || {};
         app.errorView.errorCallback(err);
       }
       )
+  }
+
+  Book.fetchOne = callback => {
+    $.get('https://mh-sg-booklist.herokuapp.com/api/v1/books/:id')
+      .then(data => {
+        Book.loadAll(data);
+        if(callback) callback();
+      },
+      err => {
+        app.errorView.errorCallback(err);
+      })
+  }
+
+  Book.create = () => {
+    var book = new Book({
+      title: $('#book-title').val(),
+      author: $('#book-author').val(),
+      isbn: $('#book-isbn').val(),
+      image_url: $('#book-image-url').val(),
+      description: $('#book-description').val()
+    })
+    book.insertBook();
   }
 
   module.Book = Book;
