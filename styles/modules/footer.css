@@ -1,0 +1,12 @@
+footer {
+  background-color: grey;
+  height: 150px;
+  padding: 15px;
+}
+
+.fa {
+  height: 32px;
+  padding: 5px;
+  float: right;
+  font-size: 32px;
+}
