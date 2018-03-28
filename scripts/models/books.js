@@ -22,6 +22,7 @@ var app = app || {};
   Book.prototype.insertBook = function(callback) {
     $.post('/api/v1/books', {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
       .then(callback);
+      console.log('insertBook')
   }
 
   Book.loadAll = rows => {
@@ -52,7 +53,8 @@ var app = app || {};
       })
   }
 
-  Book.create = () => {
+  Book.create = (event) => {
+    event.preventDefault();
     var book = new Book({
       title: $('#book-title').val(),
       author: $('#book-author').val(),
@@ -60,6 +62,7 @@ var app = app || {};
       image_url: $('#book-image-url').val(),
       description: $('#book-description').val()
     })
+    console.log('Book.create')
     book.insertBook();
   }
 
