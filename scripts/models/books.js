@@ -32,17 +32,15 @@ var app = app || {};
   }
 
   Book.fetchAll = callback => {
-    
     $.get('https://mh-sg-booklist.herokuapp.com/api/v1/books')
     // $.get(`${ENV.apiUrl}/api/v1/books`)
-      .then(
-        function(data) {
-          Book.loadAll(data);
-          if(callback) callback();
-        },
-        err => {
-          app.errorView.errorCallback(err);
-        }
+      .then(data => {
+        Book.loadAll(data);
+        callback();
+      },
+      err => {
+        app.errorView.errorCallback(err);
+      }
       )
   }
 
