@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="styles/modules/footer.css">
     <link rel="stylesheet" href="styles/modules/form-main.css">
     <link rel="stylesheet" href="styles/modules/header.css">
-    <link rel="stylesheet" href="styles/modules/modules.css">
     
     <script id="book-list-template" type="text/x-handlebars-template">
       <section class="book">
@@ -31,7 +30,8 @@
           <div>
               <h2>{{title}}</h2>
               <h3>by {{author}}</h3>
-          </div>
+            </div>
+            <button>view details</button>
       </section>
     </script>
 
@@ -47,26 +47,26 @@
                 <li><a href=/>View All Books</a></li>
                 <li><a href=/books/new>Add A New Book</a></li>
             </nav>
-    <p id="link"><a href="#">my books</a></p>
+    <p id="view-title"></p>
 
     <section id="book-list" class="list-view container"></section>
 
     <section id="detail" class="container"></section>
     <form action="#" id="new-form" class="container">
         <label>
-          <input type="text" id="book-title" placeholder="Book title" required>
+          <input type="text" id="book-title" placeholder="title" required>
         </label>
         <label>
-          <input type="text" id="book-author" placeholder="Author" required>
+          <input type="text" id="book-author" placeholder="author" required>
         </label>
         <label>
-          <input type="text" id="book-isbn" placeholder="ISBN" required>
+          <input type="text" id="book-isbn" placeholder="isbn" required>
         </label>
         <label>
-          <input type="text" id="book-image-url" placeholder="Image url" required>
+          <input type="text" id="book-image-url" placeholder="image url" required>
         </label>
-        <textarea id="book-description" rows="8" cols="40" required></textarea>
-        <button type="submit">Submit</button>
+        <textarea id="book-description" rows="8" cols="40" placeholder="description..." required></textarea>
+        <button type="submit">submit</button>
     </form>
     <section id="about" class="container">
         <p>About Us!</p>

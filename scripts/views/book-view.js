@@ -8,6 +8,7 @@ var app = app || {};
 
   bookView.initListView = () => {
     $('.container').hide();
+    $('#view-title').text('my books');
     $('.list-view').show();
     $('nav').hide();
     app.Book.all.map(book => $('#book-list').append(book.toHtml()));
@@ -15,6 +16,7 @@ var app = app || {};
 
   bookView.initFormView = () => {
     $('.container').hide();
+    $('#view-title').text('add a new book');
     $('#new-form').show();
     $('nav').hide();
     $('#new-form').on('submit', app.Book.create);

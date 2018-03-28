@@ -27,7 +27,7 @@ nav li {
 }
 
 nav li a {
-  color: blue;
+  color: white;
   text-decoration: none;
   opacity: 1;
 }
@@ -41,5 +41,5 @@ nav li a:visited{
   font-size: 40px;
   color: #cd352f;
   float: right;
-  padding: 15px 12px;
+  padding: 18px 20px;
 }
