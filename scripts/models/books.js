@@ -2,9 +2,17 @@
 
 var app = app || {};
 
+const ENV = {};
+
+ENV.isProduction = window.location.protocol === 'https:';
+ENV.productionApiUrl = 'https://git.heroku.com/mh-sg-booklist.git';
+ENV.developmentApiUrl = 'http://localhost:3000';
+ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
+
 (function(module) {
 
   function Book (rawDataObj) {
+    this.book_id = rawDataObj.book_id;
     this.title = rawDataObj.title;
     this.author = rawDataObj.author;
     this.isbn = rawDataObj.isbn;
@@ -19,10 +27,18 @@ var app = app || {};
     return template(this);
   }
 
-  Book.prototype.insertBook = function(callback) {
-    $.post('/api/v1/books', {title: this.title, author: this.author, isbn: this.isbn, image_url: this.image_url, description: this.description})
-      .then(callback);
-      console.log('insertBook')
+  Book.prototype.showDetails = function() {
+    let template = Handlebars.compile($('#book-detail-template').text());
+    return template(this);
+  }
+
+  Book.prototype.insertBook = function() {
+    $.post(`${ENV.apiUrl}/api/v1/books`, {
+      title: this.title,
+      author: this.author,
+      isbn: this.isbn, 
+      mage_url: this.image_url,
+      description: this.description})
   }
 
   Book.loadAll = rows => {
@@ -31,22 +47,20 @@ var app = app || {};
   }
 
   Book.fetchAll = callback => {
-    $.get('https://mh-sg-booklist.herokuapp.com/api/v1/books')
-      .then(data => {
-        Book.loadAll(data);
-        callback();
-      },
-      err => {
-        app.errorView.errorCallback(err);
-      }
-      )
-  }
-
-  Book.fetchOne = callback => {
-    $.get('https://mh-sg-booklist.herokuapp.com/api/v1/books/:id')
+    $.get(`${ENV.apiUrl}/api/v1/books`)
       .then(data => {
         Book.loadAll(data);
         if(callback) callback();
+      },
+      err => {app.errorView.errorCallback(err);}
+      )
+  }
+
+  Book.fetchOne = ctx => {
+    $.get(`${ENV.apiUrl}/api/v1/books/${ctx.params.book_id}`)
+      .then(data => {
+        let selected = data[0].book_id;
+        app.bookView.initDetailView(selected);
       },
       err => {
         app.errorView.errorCallback(err);
