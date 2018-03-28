@@ -2,12 +2,12 @@
 
 var app = app || {};
 
-const ENV = {};
+// const ENV = {};
 
-ENV.isProduction = window.location.protocol === 'https:';
-ENV.productionApiUrl = 'https://mh-sg-booklist.herokuapp.com';
-ENV.developmentApiUrl = 'http://localhost:3000';
-ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
+// ENV.isProduction = window.location.protocol === 'https:';
+// ENV.productionApiUrl = 'https://mh-sg-booklist.herokuapp.com';
+// ENV.developmentApiUrl = 'http://localhost:3000';
+// ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
 (function(module) {
 
@@ -32,14 +32,16 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
   }
 
   Book.fetchAll = callback => {
-    $.get(`${ENV.apiUrl}/api/v1/books`)
+    
+    $.get('https://mh-sg-booklist.herokuapp.com/api/v1/books')
+    // $.get(`${ENV.apiUrl}/api/v1/books`)
       .then(
         function(data) {
           Book.loadAll(data);
           if(callback) callback();
         },
-        function(err) {
-          console.log(err);
+        err => {
+          app.errorView.errorCallback(err);
         }
       )
   }
