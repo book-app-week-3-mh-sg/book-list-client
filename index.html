@@ -36,11 +36,33 @@
     </script>
 
     <script id="book-detail-template" type="text/x-handlebars-template">
-        <img src={{image_url}}>
+       <section class="detail">
             <h2>{{title}}</h2>
             <h3>by {{author}}</h3>
             <p>{{isbn}}</p>
+            <img src={{image_url}}>
             <p>{{{description}}}</p>
+            <button id="update" data-id="{{book_id}}">update</button>
+            <button id="delete" data-id="{{book_id}}">delete</button>
+        </section>
+    </script>
+    <script id="update-form-template" type="text/x-handlebars-template">
+        <form action="#" id="update-form" class="container">
+            <label>
+                <input type="text" id="update-book-title" placeholder="{{title}}" required>
+            </label>
+            <label>
+                <input type="text" id="update-book-author" placeholder="{{author}}" required>
+            </label>
+            <label>
+                <input type="text" id="update-book-isbn" placeholder="{{isbn}}" required>
+            </label>
+            <label>
+                <input type="text" id="update-book-image-url" placeholder="{{image url}}" required>
+            </label>
+            <textarea id="update-book-description" rows="8" cols="40" placeholder="{{description}}" required></textarea>
+            <button type="submit">submit</button>
+        </form>
     </script>
 
 </head>

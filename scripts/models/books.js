@@ -43,6 +43,15 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     console.log('Sent to server??');
   }
 
+  Book.prototype.deleteBook = function(callback) {
+    $.ajax({
+      url: `/api/v1/books/${this.book_id}`,
+      method: 'DELETE'
+    })
+      .then(console.log)
+      .then(callback);
+  };
+
   Book.loadAll = rows => {
     Book.all = rows.sort((a, b) => {return a.title > b.title;})
       .map(instance => new Book(instance));
@@ -58,7 +67,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       )
   }
 
-  Book.fetchOne = ctx => {
+  Book.fetchOne = (ctx, next) => {
     $.get(`${ENV.apiUrl}/api/v1/books/${ctx.params.book_id}`)
       .then(data => {
         let selected = data[0].book_id;
@@ -67,6 +76,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       err => {
         app.errorView.errorCallback(err);
       })
+      next();
   }
 
   Book.create = (event) => {
@@ -79,6 +89,25 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       description: $('#book-description').val()
     })
     book.insertBook();
+  }
+
+  Book.update = (event) => {
+    event.preventDefault();
+    $.ajax({
+      url: `/api/v1/books/${$(this).book_id}`,
+      method: 'PUT',
+      data: {
+        title: $(this).title,
+        author: $(this).author,
+        isbn: $(this).isbn,
+        image_url: $(this).image_url,
+        description: $(this).description
+      }
+    })
+    .then(data => {
+      console.log(data);
+      if (callback) callback();
+    })
   }
 
   module.Book = Book;
