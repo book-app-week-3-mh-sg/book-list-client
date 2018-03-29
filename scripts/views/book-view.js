@@ -23,26 +23,27 @@ var app = app || {};
     $('#new-form').on('submit', app.Book.create);
   }
 
-  bookView.initDetailView = id => {
+  bookView.initDetailView = (ctx) => {
     $('.container').hide();
     $('#view-title').hide();
-    let selectedBook = app.Book.all.filter(book => book.book_id === id);
+    let selectedBook = app.Book.all.filter(book => book.book_id === parseInt(ctx.params.book_id));
     $('#detail').empty();
     $('#detail').append(selectedBook[0].showDetails());
     $('#detail').show();
-    $('#delete').on('click', selectedBook[0].deleteBook());
+    // $('#delete').on('click', selectedBook[0].deleteBook());
   }
 
   bookView.initUpdateFormPage = (ctx) => {
-    $.get(`${ENV.apiUrl}/api/v1/books/${ctx.params.book_id}`)
-      .then(data => {
-        $('#update-book-author').val(data[0].author);
-        $('#update-book-title').val(data[0].title);
-        $('#update-book-isbn').val(data[0].isbn);
-        $('#update-book-image_url').val(data[0].image_url);
-        $('#update-book-description').val(data[0].description);
-        $('#update-form').on('submit', app.Book.update);
-      })
+    $('.container').hide();
+    $('#view-title').hide();
+    $('#update-form').show();
+    let selectedBook = app.Book.all.filter(book => book.book_id === parseInt(ctx.params.book_id));
+    $('#update-book-author').val(selectedBook[0].author);
+    $('#update-book-title').val(selectedBook[0].title);
+    $('#update-book-isbn').val(selectedBook[0].isbn);
+    $('#update-book-image-url').val(selectedBook[0].image_url);
+    $('#update-book-description').val(selectedBook[0].description);
+    $('#update-form').on('submit', app.Book.update);
   }
 
   bookView.toggleNav = () => {
