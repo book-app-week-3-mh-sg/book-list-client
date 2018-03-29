@@ -5,7 +5,7 @@ var app = app || {};
 const ENV = {};
 
 ENV.isProduction = window.location.protocol === 'https:';
-ENV.productionApiUrl = 'https://git.heroku.com/mh-sg-booklist.git';
+ENV.productionApiUrl = 'https://mh-sg-booklist.herokuapp.com';
 ENV.developmentApiUrl = 'http://localhost:3000';
 ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
@@ -32,13 +32,15 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     return template(this);
   }
 
-  Book.prototype.insertBook = function() {
+  Book.prototype.insertBook = function(callback) {
     $.post(`${ENV.apiUrl}/api/v1/books`, {
       title: this.title,
       author: this.author,
       isbn: this.isbn, 
       mage_url: this.image_url,
       description: this.description})
+      .then(callback);
+    console.log('Sent to server??');
   }
 
   Book.loadAll = rows => {
@@ -76,7 +78,6 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       image_url: $('#book-image-url').val(),
       description: $('#book-description').val()
     })
-    console.log('Book.create')
     book.insertBook();
   }
 
