@@ -36,8 +36,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     $.post(`${ENV.apiUrl}/api/v1/books`, {
       title: this.title,
       author: this.author,
-      isbn: this.isbn, 
-      mage_url: this.image_url,
+      isbn: this.isbn,
+      image_url: this.image_url,
       description: this.description})
       .then(callback);
     console.log('Sent to server??');
