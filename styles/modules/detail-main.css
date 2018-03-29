@@ -1,3 +1,55 @@
+.detail h2 {
+    padding: 30px 20px 0px 20px; 
+    font-size: 24px;
+    text-decoration: underline;
+}
+
+#detail-author-isbn {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 14px;
+    font-style: italic;
+    padding: 5px 0px 10px 0px;
+  }
+
+#detail-author {
+    float: left;
+}
+
+#detail-isbn {
+    float: right;
+}
+
+.detail p {
+    padding: 0px 20px 10px 20px;
+    line-height: 24px;
+}
+
+#detail-book-buttons {
+    padding: 0px 20px 0px 20px;
+}
+
 .detail img {
-    height: 300px;
+    height: 280px;
+    clear: both;
+    border: 2px solid black;
+    border-radius: 5px;
+    float: left;
+}
+
+.detail button {
+    background-color: #731A1A;
+    border-radius: 3px;
+    border-color: #731A1A;
+    color: #D7D9D8;
+    padding: 10px 35px;
+    width: 120px;
+    margin: 20px 20px 0px 0px;
+    font-size: 14px;
+    float: right;
+}
+
+#detail-description {
+    padding: 25px 20px 10px 20px;
+    clear: both;
 }
