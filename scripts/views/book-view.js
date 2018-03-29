@@ -11,6 +11,7 @@ var app = app || {};
     $('#view-title').text('my books');
     $('.list-view').show();
     $('nav').hide();
+    $('#book-list').empty();
     app.Book.all.map(book => $('#book-list').append(book.toHtml()));
   }
 
@@ -27,6 +28,7 @@ var app = app || {};
     $('#view-title').hide();
     let selectedBook = app.Book.all.filter(book => book.book_id === id);
     console.log(selectedBook);
+    $('#detail').empty();
     $('#detail').append(selectedBook[0].showDetails());
     $('#detail').show();
   }
