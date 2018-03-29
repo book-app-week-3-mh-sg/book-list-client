@@ -45,7 +45,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
   Book.prototype.deleteBook = function(callback) {
     $.ajax({
-      url: `/api/v1/books/${this.book_id}`,
+      url: `${ENV.apiUrl}/api/v1/books/${this.book_id}`,
       method: 'DELETE'
     })
       .then(console.log)
@@ -91,9 +91,9 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
 
   Book.update = (event) => {
     event.preventDefault();
-    console.log(event.target);
+    let id = parseInt(window.location.pathname.match(/\/\d+\//)[0].replace(/\//g, ''));
     $.ajax({
-      url: `/api/v1/books/${this}`,
+      url: `${ENV.apiUrl}/api/v1/books/${id}`,
       method: 'PUT',
       data: {
         title: $('#update-book-title').val(),
@@ -105,6 +105,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     })
       .then(data => {
         console.log(data);
+        window.location = '/';
       })
   }
 
