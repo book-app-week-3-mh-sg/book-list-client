@@ -78,6 +78,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       description: $('#book-description').val()
     })
     book.insertBook();
+    window.location = '/';
   }
 
   Book.destroy = event => {
