@@ -13,39 +13,44 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <link rel="stylesheet" href="styles/reset.css">
-    <link rel="stylesheet" href="styles/icons.css">
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/layout.css">
-    <link rel="stylesheet" href="styles/modules/book-main.css">
-    <link rel="stylesheet" href="styles/modules/detail-main.css">
-    <link rel="stylesheet" href="styles/modules/error.css">
-    <link rel="stylesheet" href="styles/modules/footer.css">
-    <link rel="stylesheet" href="styles/modules/form-main.css">
-    <link rel="stylesheet" href="styles/modules/header.css">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/icons.css">
+    <link rel="stylesheet" href="./styles/base.css">
+    <link rel="stylesheet" href="./styles/layout.css">
+    <link rel="stylesheet" href="./styles/modules/book-main.css">
+    <link rel="stylesheet" href="./styles/modules/detail-main.css">
+    <link rel="stylesheet" href="./styles/modules/error.css">
+    <link rel="stylesheet" href="./styles/modules/footer.css">
+    <link rel="stylesheet" href="./styles/modules/form-main.css">
+    <link rel="stylesheet" href="./styles/modules/header.css">
     
     <!-- LIST VIEW TEMPLATE -->
     <script id="book-list-template" type="text/x-handlebars-template">
-      <section class="book">
-          <img src={{image_url}}>
-          <div>
-              <h2>{{title}}</h2>
-              <h3>by {{author}}</h3>
+        <section class="book">
+            <img src={{image_url}}>
+            <div>
+                <h2>{{title}}</h2>
+                <h3>by {{author}}</h3>
             </div>
             <a href="/books/{{book_id}}"><button>view details</button></a>
-      </section>
+        </section>
     </script>
 
     <!-- DETAIL VIEW TEMPLATE -->
     <script id="book-detail-template" type="text/x-handlebars-template">
-       <section class="detail">
+        <section class="detail">
             <h2>{{title}}</h2>
-            <h3>by {{author}}</h3>
-            <p>{{isbn}}</p>
-            <img src={{image_url}}>
-            <p>{{{description}}}</p>
-            <a href="/books/{{book_id}}/update"><button id="update" data-id="{{book_id}}">update</button></a>
-            <button id="delete" data-id="{{book_id}}">delete</button>
+            <div id="detail-author-isbn">
+                <p id="detail-author">{{author}}</p>
+                <p id="detail-isbn">{{isbn}}</p>
+            </div>
+            <div id="detail-book-buttons">
+                <img src={{image_url}}>
+                <!-- <a href="/books/{{book_id}}/update"></a> -->
+                <button id="update" data-id="{{book_id}}">update</button>
+                <button id="delete" data-id="{{book_id}}">delete</button>
+            </div>
+            <p id="detail-description">{{{description}}}</p>
         </section>
     </script>
 
