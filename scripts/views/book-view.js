@@ -4,37 +4,40 @@ var app = app || {};
 
 (function(module){
 
+  let clearView = () => {
+    $('.container').hide();
+    $('nav').hide();
+    $('#book-list').empty();
+    $('#detail').empty();
+  }
+
   const bookView = {};
 
   bookView.initListView = () => {
-    $('.container').hide();
+    clearView();
     $('#view-title').text('my books');
     $('.list-view').show();
-    $('nav').hide();
-    $('#book-list').empty();
     app.Book.all.map(book => $('#book-list').append(book.toHtml()));
   }
 
   bookView.initFormView = () => {
-    $('.container').hide();
+    clearView();
     $('#view-title').text('add a new book');
     $('#new-form').show();
-    $('nav').hide();
     $('#new-form').on('submit', app.Book.create);
   }
 
   bookView.initDetailView = (ctx) => {
-    $('.container').hide();
+    clearView();
     $('#view-title').hide();
     let selectedBook = app.Book.all.filter(book => book.book_id === parseInt(ctx.params.book_id));
-    $('#detail').empty();
     $('#detail').append(selectedBook[0].showDetails());
     $('#detail').show();
     $('#delete').on('click', app.Book.destroy);
   }
 
   bookView.initUpdateFormPage = (ctx) => {
-    $('.container').hide();
+    clearView();
     $('#view-title').hide();
     $('#update-form').show();
     let selectedBook = app.Book.all.filter(book => book.book_id === parseInt(ctx.params.book_id));
