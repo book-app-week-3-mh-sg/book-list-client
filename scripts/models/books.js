@@ -78,6 +78,7 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       description: $('#book-description').val()
     })
     book.insertBook();
+    Book.fetchAll(app.bookView.initListView);
     window.location = '/';
   }
 
@@ -88,7 +89,10 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
       url: `${ENV.apiUrl}/api/v1/books/${id}`,
       method: 'DELETE'
     })
-      .then(window.location = '/');
+      .then(
+        Book.fetchAll(app.bookView.initListView),
+        window.location = '/'
+      );
   };
 
   Book.update = event => {
@@ -107,7 +111,8 @@ ENV.apiUrl = ENV.isProduction ? ENV.productionApiUrl : ENV.developmentApiUrl;
     })
       .then(data => {
         console.log(data);
-        window.location = '/';
+        Book.fetchAll(app.bookView.initListView),
+        window.location = '/'
       })
   }
 

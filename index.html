@@ -46,8 +46,7 @@
             </div>
             <div id="detail-book-buttons">
                 <img src={{image_url}}>
-                <!-- <a href="/books/{{book_id}}/update"></a> -->
-                <button id="update" data-id="{{book_id}}">update</button>
+                <a href="/books/{{book_id}}/update"><button id="update" data-id="{{book_id}}">update</button></a>
                 <button id="delete" data-id="{{book_id}}">delete</button>
             </div>
             <p id="detail-description">{{{description}}}</p>
@@ -122,6 +121,9 @@
     <script src="scripts/views/book-view.js" type="text/javascript"></script>
     <script src="scripts/views/error-view.js" type="text/javascript"></script>
     <script src="scripts/views/routes.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(app.Book.fetchAll(app.bookView.initListView))
+    </script>
 </body>
 
 </html>
