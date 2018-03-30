@@ -30,7 +30,7 @@ var app = app || {};
     $('#detail').empty();
     $('#detail').append(selectedBook[0].showDetails());
     $('#detail').show();
-    // $('#delete').on('click', selectedBook[0].deleteBook());
+    $('#delete').on('click', app.Book.destroy);
   }
 
   bookView.initUpdateFormPage = (ctx) => {
