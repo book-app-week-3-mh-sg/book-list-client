@@ -64,6 +64,7 @@
             <nav>
                 <li><a href=/>View All Books</a></li>
                 <li><a href=/books/new>Add A New Book</a></li>
+                <li><a href="/admin">Admin Login</a></li>
             </nav>
     <p id="view-title"></p>
 
@@ -106,7 +107,15 @@
         <textarea id="update-book-description" rows="8" cols="40" required></textarea>
         <button type="submit">submit</button>
     </form>
-
+    <section id="admin-view" class="container" hidden>
+        <form id="admin-form" >
+            <input type="number" id="passphrase" placeholder="enter passphrase">
+            <button type="submit">verify</button>
+        </form>
+        <section id="admin-only" >
+            <p hidden>You are verified!</p>
+        </section>
+    </section>
     <section id="error-message"></section>
     <footer>
         <div class="fa fa-linkedin-square"></div>
@@ -115,6 +124,7 @@
 
     <script src="scripts/models/books.js" type="text/javascript"></script>
     <script src="scripts/views/book-view.js" type="text/javascript"></script>
+    <script src="scripts/views/admin-view.js" type="text/javascript"></script>
     <script src="scripts/views/error-view.js" type="text/javascript"></script>
     <script src="scripts/views/routes.js" type="text/javascript"></script>
     <script>
